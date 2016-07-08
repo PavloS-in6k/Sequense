@@ -3,6 +3,9 @@ package com.in6k.Sequense;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -94,6 +97,22 @@ public class SequenseFinderTests {
     @Test
     public void theSmallestNegative() throws Exception {
         assertArrayEquals(SequenseFinder.getMaxSequense(new ArrayList<Integer>(Arrays.asList(-14, -13, -6, -5, -1, -3))).toArray(),
+                new ArrayList<Integer>(Arrays.asList(-1)).toArray());
+    }
+
+    @Test
+    public void bigTestForNegativeSequense() throws Exception {
+        BufferedReader reader = new BufferedReader(new FileReader("GeneratedNegativeSequense.txt"));
+        ArrayList<Integer> temporaryList = new ArrayList<Integer>();
+
+        String buferValue = "";
+        while ((buferValue = reader.readLine()) != null)
+        {
+            temporaryList.add(Integer.parseInt(buferValue));
+        }
+
+        reader.close();
+        assertArrayEquals(SequenseFinder.getMaxSequense(temporaryList).toArray(),
                 new ArrayList<Integer>(Arrays.asList(-1)).toArray());
     }
 }
